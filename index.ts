@@ -95,7 +95,7 @@ app.post('/api/chat' ,async (req, res) => {
             process.env.PINECONE_INDEX_NAME as string
           );
     
-    
+          //rollback
           const vectorStore = await PineconeStore.fromExistingIndex(
             new OpenAIEmbeddings(),
             { pineconeIndex }
