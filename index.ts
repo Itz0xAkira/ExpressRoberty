@@ -41,6 +41,8 @@ app.post('/api/chat' ,async (req, res) => {
     const index  = await req.body.index; 
     const apiKeyPine  = await req.body.pine; 
     console.log(messages)
+    console.log(index)
+    console.log(apiKeyPine)
 
     try {
         // console.log(msg)
