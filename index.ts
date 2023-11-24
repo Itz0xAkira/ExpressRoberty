@@ -38,6 +38,8 @@ const port = process.env.PORT || 8000;
 app.post('/api/chat' ,async (req, res) => {
 
     const messages  = await req.body.messages;
+    const index  = await req.body.index; 
+    const apiKeyPine  = await req.body.pine; 
     console.log(messages)
 
     try {
@@ -88,11 +90,11 @@ app.post('/api/chat' ,async (req, res) => {
           const { stream, handlers } = LangChainStream();
           const pineconeClient = new PineconeClient();
           await pineconeClient.init({
-            apiKey: process.env.PINECONE_API_KEY ?? "",
+            apiKey: apiKeyPine ?? "",
             environment: "us-west4-gcp-free",
           });
           const pineconeIndex = pineconeClient.Index(
-            process.env.PINECONE_INDEX_NAME as string
+            index as string
           );
     
           //rollback
