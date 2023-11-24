@@ -96,7 +96,7 @@ app.post('/api/chat' ,async (req, res) => {
             environment: "us-west4-gcp-free",
           });
           const pineconeIndex = pineconeClient.Index(
-            index as string
+            "test2"
           );
     
           //rollback
@@ -109,7 +109,7 @@ app.post('/api/chat' ,async (req, res) => {
             modelName: "gpt-4",
             streaming: false,
             callbackManager: CallbackManager.fromHandlers(handlers),
-            temperature:0.6,
+            temperature:0,
             
           });
         
