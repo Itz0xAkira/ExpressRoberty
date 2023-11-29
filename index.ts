@@ -38,11 +38,11 @@ const port = process.env.PORT || 8000;
 app.post('/api/chat' ,async (req, res) => {
 
     const messages  = await req.body.messages;
-    const index  = await req.body.index; 
-    const apiKeyPine  = await req.body.pine; 
+    const namespace_  = await req.body.namespace; 
+    // const apiKeyPine  = await req.body.pine; 
     console.log(messages)
-    console.log(index)
-    console.log(apiKeyPine)
+    console.log(namespace_)
+    // console.log(apiKeyPine)
 
     try {
         // console.log(msg)
@@ -92,17 +92,17 @@ app.post('/api/chat' ,async (req, res) => {
           const { stream, handlers } = LangChainStream();
           const pineconeClient = new PineconeClient();
           await pineconeClient.init({
-            apiKey: apiKeyPine ?? "",
+            apiKey: process.env.PINECONE_API_KEY ?? "",
             environment: "us-west4-gcp-free",
           });
           const pineconeIndex = pineconeClient.Index(
-            "test2"
+            process.env.PINECONE_INDEX_NAME ?? "",
           );
     
           //rollback
           const vectorStore = await PineconeStore.fromExistingIndex(
             new OpenAIEmbeddings(),
-            { pineconeIndex }
+            { pineconeIndex, namespace : namespace_ }
           );
     
           const model = new OpenAI({
