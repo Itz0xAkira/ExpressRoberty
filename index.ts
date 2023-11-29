@@ -38,10 +38,10 @@ const port = process.env.PORT || 8000;
 app.post('/api/chat' ,async (req, res) => {
 
     const messages  = await req.body.messages;
-    const namespace_  = await req.body.namespace; 
+    const namespace  = await req.body.namespace; 
     // const apiKeyPine  = await req.body.pine; 
     console.log(messages)
-    console.log(namespace_)
+    console.log(namespace)
     // console.log(apiKeyPine)
 
     try {
@@ -95,6 +95,7 @@ app.post('/api/chat' ,async (req, res) => {
             apiKey: process.env.PINECONE_API_KEY ?? "",
             environment: "us-west4-gcp-free",
           });
+          
           const pineconeIndex = pineconeClient.Index(
             process.env.PINECONE_INDEX_NAME ?? "",
           );
@@ -102,7 +103,7 @@ app.post('/api/chat' ,async (req, res) => {
           //rollback
           const vectorStore = await PineconeStore.fromExistingIndex(
             new OpenAIEmbeddings(),
-            { pineconeIndex, namespace : namespace_ }
+            { pineconeIndex, namespace }
           );
     
           const model = new OpenAI({
