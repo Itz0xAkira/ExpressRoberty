@@ -76,9 +76,9 @@ app.post('/api/chat' ,async (req, res) => {
                 case "OrderRequest":
                   const req = await OrderRequest(funcParam as string);
                   res.status(200).json({ message: req.content });
-                case "SelfCheckIn":
+                case "connect2Agent":
                   const anser = await EmbedQuestion(funcParam as string);
-                  // return new StreamingTextResponse(anser.content)
+                  res.status(200).json({ message: "ConnectAgent" });
                   break;
                 case "CheckDate":
                 //   CheckDate(args)

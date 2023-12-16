@@ -13,19 +13,19 @@ export const functionlist = [
         required : ["Consumables"]
       }
     },
-    // {
-    //   name: "SelfCheckIn",
-    //   description : "this function is for any question asked by the user unless it matches something in the functions list",
-    //   parameters : {
-    //     type : "object",
-    //     properties: {
-    //       date : {
-    //         type : "string",
-    //         description : "the whole question asked by the user"
-    //       }
-    //     },
-    //     required : ["date"]
-    //   }
-    // }
+    {
+      name: "connect2Agent",
+      description : "if the user asks to be connected to an agent or a repersentive or ask about the price of the treatment",
+      parameters : {
+        type : "object",
+        properties: {
+          date : {
+            type : "string",
+            description : "the whole question asked by the user"
+          }
+        },
+        // required : [""]
+      }
+    }
 ]
 
